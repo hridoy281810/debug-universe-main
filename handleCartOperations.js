@@ -2,7 +2,10 @@ const addToCart = async (id) => {
   const data = await fetch(`ROOMS.json`);
   const result = await data.json();
   const { name, summary, property_type, images,number_of_reviews,price,_id} = result.find((item) => item._id == id);
-  const cartItems=getItemsFromStorage()
+  const cartItems=getItemsFromStorage();
+  if(cartItems.find(item => item._id == id)){
+    return;
+  }
   
 
   cartItems.push({ name, summary, property_type, images,number_of_reviews,price,_id});
