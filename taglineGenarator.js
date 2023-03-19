@@ -69,7 +69,6 @@ console.log(review_scores?.scores)
    </div>
     `;
     document.getElementById('reviews').appendChild(reviews);
-    // console.log(document.getElementById('reviews'))
     
   }
   
