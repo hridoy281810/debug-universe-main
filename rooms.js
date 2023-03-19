@@ -3,7 +3,7 @@ let allRooms=[]
 const fetchRoomsData = async () => {
   const data = await fetch(`ROOMS.json`);
   const result = await data.json();
-  allRooms=result
+             allRooms=result
   displayRoomsData(result);
 };
 
@@ -45,8 +45,9 @@ const range = document.getElementById("review-range");
 range.addEventListener("input", () => {
   const value = range.Value;
 
-  document.getElementById('review-count').innerText = value
-  const filteredData= allRooms.filter( r.number_of_reviews >= value)
+  document.getElementById('review-count').innerText = value;
+  const filteredData= allRooms.filter( r.number_of_reviews >= value);
+
   displayRoomsData(allRooms) 
 });
 

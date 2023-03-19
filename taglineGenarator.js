@@ -28,13 +28,13 @@ document
     const data = await fetch(`ROOMS.json`);
     const result = await data.json();
     const randomIndex = Math.floor(Math.random() * 10);
+    console.log(data)
     const modalBody = document.getElementById("random-room-info-modal-body");
-    const { name, summary, property_type, images, review_scores } = result[9];
-    
-    
+    const { name, summary, property_type, images, review_scores } = result[randomIndex];
+    console.log(result)
 
     const reviews = document.createElement("ol");
-    if (review_scores.scores) {
+    if (review_scores?.scores) {
       reviews.setAttribute('class',"list-group")
 
       object.keys(review_scores.scores).forEach((key) => {
@@ -48,12 +48,11 @@ document
     } else {
       reviews.innerHTML = "No reviews found";
     }
-
-    
+    console.log(review_scores)
     modalBody.innerHTML = `
     <div class="col">
     <div class="card h-100">
-      <img src=${images.picture_url} class="card-img-top " alt="..." style=" height: 300px;
+      <img src=${images?.picture_url} class="card-img-top " alt="..." style=" height: 300px;
       object-fit: fill;">
       <div class="card-body">
         <h5 class="card-title">${name}</h5>
@@ -61,7 +60,7 @@ document
         <p class="card-text">${summary}</p>
         <div id='review-score'>
       Review Scores :
-      ${review_scores.scores.review_scores_accuracy}
+      ${review_scores?.scores ? review_scores?.scores?.review_scores_accuracy: 'no data' }
     </div>
       </div>
       <button class="btn btn-info btn-lg"  role="button"
